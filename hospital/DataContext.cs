@@ -168,29 +168,28 @@ internal class DataContext
         }
         Console.WriteLine("enter date(01.01.2025):");
         string date = Console.ReadLine();
-        var patient = Patients[patientid];
-        var doctor = Doctors[doctorid];
-        var seans = new Seans(name, [patient],[doctor],date, _seansIndex);
+        string patient = Patients[patientid].FirstName;
+        string doctor = Doctors[doctorid].Name;
+        var seans = new Seans(name, date, doctor, patient, _seansIndex);
         Seanses[_seansIndex++] = seans;
-        patient.Doctor = doctor.Name;
-        doctor.Seans = seans.Name;
+        Patients[patientid].Doctor  = doctor;
+        Patients[patientid].Seans=  seans.Date;
+        Doctors[doctorid].Seans = seans.Date;
 
 
     }
     public void PrintSeanses()
     {
-        Console.WriteLine(new string('-', 50));
+        Console.WriteLine(new string('-', 70));
 
-        Console.WriteLine($"{"Date",-10} {"Doctors",-20} {"Patients",20}");
-        foreach (var seans in Seanses)
-        {
-            if (seans == null) continue;
-            Console.WriteLine(new string('-', 50));
-            Console.WriteLine(seans.Name);
-            Console.WriteLine(seans.Doctors);
-            Console.WriteLine($"{seans.Date,-10} {seans.Doctors,-20} {seans.Patients,-20}");
-        }
-        Console.WriteLine(new string('-', 50));
-
+        Console.WriteLine($"{"Name",-20} {"Date",-10} {"Doctors",-20} {"Patients",20}");
+        
+           
+            for (int i = 0; i < _seansIndex; i++)
+            {
+                var seans = Seanses[i];
+                Console.WriteLine($"{seans.Name,-20} {seans.Date,-10} {seans.Doctor,-20} {seans.Patient,-10} ");
+            }
+            Console.WriteLine(new string('-', 70));
     }
 }

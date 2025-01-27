@@ -3,8 +3,8 @@
 internal class Seans
 {
     public string Name { get; set; }
-    public Patient[] Patients { get; set; } = new Patient[10];
-    public Doctor[] Doctors { get; set; } = new Doctor[10];
+    public string Patient { get; set; }
+    public string Doctor { get; set; } 
     public string Date {  get; set; }
     public int Id { get; set; }
     public Seans()
@@ -12,17 +12,17 @@ internal class Seans
 
     }
 
-    public Seans(string name,  Patient [] patients, Doctor[] doctors, string date, int seansid)
+    public Seans(string name,  string patient, string doctor, string date, int seansid)
     {
         Name = name;
-        Patients = patients;
-        Doctors = doctors;
+        Patient = patient;
+        Doctor = doctor;
         Date = date;
         Id = seansid;
 
     }
     public override string ToString()
     {
-        return $"{Name} {Date}";
+        return $"{Name} {Doctor} {Patient} {Date}";
     }
 }
